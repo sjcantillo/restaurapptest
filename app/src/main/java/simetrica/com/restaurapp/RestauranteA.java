@@ -81,20 +81,21 @@ public class RestauranteA extends AppCompatActivity {
 
             if(image != null){
                 imgRes.setImageBitmap(image);
-                edtName.setText(rest.getName());
-                edtdireccion.setText(address);
-                edtciudad.setText(rest.getCity());
-                edtEstado.setText(rest.getState());
-                edtTelefono.setText(rest.getPhone());
-                edtPostal.setText(rest.getPostal_code());
+
                 pDialog.dismiss();
 
             }else{
 
                 pDialog.dismiss();
-                Toast.makeText(RestauranteA.this, "Imagen no se eneucntra disponibler", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RestauranteA.this, "Imagen no se encuentra disponible", Toast.LENGTH_SHORT).show();
 
             }
+            edtName.setText(rest.getName());
+            edtdireccion.setText(address);
+            edtciudad.setText(rest.getCity());
+            edtEstado.setText(rest.getState());
+            edtTelefono.setText(rest.getPhone());
+            edtPostal.setText(rest.getPostal_code());
         }
     }
 }
