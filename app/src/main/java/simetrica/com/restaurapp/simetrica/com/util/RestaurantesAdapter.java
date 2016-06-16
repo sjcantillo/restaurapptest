@@ -36,6 +36,7 @@ public class RestaurantesAdapter extends RecyclerView.Adapter<RestauranteViewHol
         holder.getNameTextView().setText(restaurant.getName().toString());
         holder.getAddressTextView().setText(restaurant.getAddress());
         holder.getId().setText("" + restaurant.getId());
+        holder.getStateTextView().setText(restaurant.getState());
 
     }
     public void clear(){

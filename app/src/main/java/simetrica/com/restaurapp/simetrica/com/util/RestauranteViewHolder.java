@@ -13,13 +13,13 @@ public class RestauranteViewHolder extends RecyclerView.ViewHolder {
     private TextView id;
     private TextView nameTextView;
     private TextView addressTextView;
-
+    private TextView stateTextView;
     public RestauranteViewHolder(View itemView) {
         super(itemView);
         id = (TextView) itemView.findViewById(R.id.id);
         nameTextView = (TextView) itemView.findViewById(R.id.name);
         addressTextView = (TextView) itemView.findViewById(R.id.address);
-
+        stateTextView= (TextView) itemView.findViewById(R.id.state);
     }
 
     public TextView getNameTextView() {
@@ -28,6 +28,10 @@ public class RestauranteViewHolder extends RecyclerView.ViewHolder {
 
     public TextView getAddressTextView() {
         return addressTextView;
+    }
+
+    public TextView getStateTextView() {
+        return stateTextView;
     }
 
     public TextView getId() {
