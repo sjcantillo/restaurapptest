@@ -21,6 +21,9 @@ import com.google.gson.Gson;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -53,7 +56,7 @@ public class MainRestaurantes extends AppCompatActivity {
         setContentView(R.layout.activity_main_restaurantes);
        // toolbar= (Toolbar) findViewById(R.id.appbar);
         if (Build.VERSION.SDK_INT >= 21){
-            getWindow().setNavigationBarColor(getResources().getColor(R.color.tab));
+            getWindow().setNavigationBarColor(getResources().getColor(R.color.colorPrimary));
         }
         //setSupportActionBar(toolbar);
         context=this.getBaseContext();
@@ -71,7 +74,7 @@ public class MainRestaurantes extends AppCompatActivity {
             edit.putLong("currentPage", (long)1);
             edit.commit();
         }
-
+        traerDatosWS();
         llenarRecyclerView();
         adapter=new RestaurantesAdapter(restaurantes);
         adapter.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +98,6 @@ public class MainRestaurantes extends AppCompatActivity {
                 } catch (AdaFrameworkException e) {
                     e.printStackTrace();
                 }
-                Log.i("DemoRecView", "Pulsado el elemento " + idRestaurante);
             }
         });
         final  LinearLayoutManager mLayoutManager;
@@ -221,8 +223,36 @@ class MyAsyncTask extends AsyncTask<String, Void, String> {
             try {
                 jsonResult = myRestFulGP.addEventGet(parames, params[3]);
                 Log.i("jsonResultDatos", jsonResult);
-                final Gson gsonR = new Gson();
-                OpenTable resultado = (OpenTable) gsonR.fromJson(jsonResult, OpenTable.class);
+                Gson gsonR = new Gson();
+                OpenTable resultado=new OpenTable();
+                if (Build.VERSION.SDK_INT >= 23) {
+                    JSONObject jsonRootObject = new JSONObject(jsonResult);
+                    JSONArray jsonArray = jsonRootObject.optJSONArray("restaurants");
+                    List<Restaurante> restautans= new ArrayList<Restaurante>();
+                    for(int i=0; i < jsonArray.length(); i++){
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        Restaurante objeto = new Restaurante(Long.parseLong(jsonObject.optString("id").toString()),
+                                jsonObject.optString("address").toString() ,
+                                jsonObject.optString("city").toString() ,
+                                jsonObject.optString("country").toString() ,
+                                jsonObject.optString("image_url").toString() ,
+                                jsonObject.optString("name").toString()  ,
+                                Double.parseDouble(jsonObject.optString("lat").toString()),
+                                Double.parseDouble(jsonObject.optString("lng").toString()),
+                                jsonObject.optString("phone").toString(),
+                                jsonObject.optString("postal_code").toString() ,
+                                jsonObject.optString("reserve_url").toString() ,
+                                jsonObject.optString("state").toString() ,
+                                Double.parseDouble(jsonObject.optString("price").toString()) ,
+                                jsonObject.optString("mobile_reserve_url").toString());
+                       restautans.add(objeto);
+                    }
+                    resultado.setRestaurants(restautans);
+                }else
+                {
+                    resultado = (OpenTable) gsonR.fromJson(jsonResult, OpenTable.class);
+                }
+
                 ApplicationDataContext dataContext = getApplicationDataContext();
                 ApplicationDataContext dataContextAux = getApplicationDataContext();
 
@@ -247,6 +277,8 @@ class MyAsyncTask extends AsyncTask<String, Void, String> {
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             } catch (AdaFrameworkException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
 
@@ -274,9 +306,11 @@ class MyAsyncTask extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String resul) {
         llenarRecyclerView();
+        adapter.clear();
         adapter.addAll(restaurantes);
         if(page>1)
         swipeRefreshLayout.setRefreshing(false);
+
         loading=true;
         /*adapter.clear();
         adapter.addAll(llenarLista(context));*/
