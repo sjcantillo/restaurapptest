@@ -91,7 +91,7 @@ public class RestauranteA extends AppCompatActivity {
 
             }
             edtName.setText(rest.getName());
-            edtdireccion.setText(address);
+            edtdireccion.setText(rest.getAddress());
             edtciudad.setText(rest.getCity());
             edtEstado.setText(rest.getState());
             edtTelefono.setText(rest.getPhone());
