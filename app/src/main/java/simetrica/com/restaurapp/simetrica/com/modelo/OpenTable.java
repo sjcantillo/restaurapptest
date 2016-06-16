@@ -14,7 +14,14 @@ public class OpenTable implements Serializable {
     private List<Restaurante> restaurants;
 
     public OpenTable() {
+    super();
+    }
 
+    public OpenTable(long total_entries, long per_page, long current_page, List<Restaurante> restaurants) {
+        this.total_entries = total_entries;
+        this.per_page = per_page;
+        this.current_page = current_page;
+        this.restaurants = restaurants;
     }
 
     public long getTotal_entries() {
