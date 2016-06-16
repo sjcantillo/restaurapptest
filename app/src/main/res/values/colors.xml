@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="background_gradient_start">#FFFFFFFF</color>
+    <color name="background_gradient_stop">#FFC8C8C8</color>
+    <color name="white">#FFFFFF</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="fuchsia">#FF00FF</color>
+    <color name="red">#FF0000</color>
+    <color name="silver">#C0C0C0</color>
+    <color name="gray">#525252</color>
+    <color name="olive">#808000</color>
+    <color name="purple">#800080</color>
+    <color name="maroon">#800000</color>
+    <color name="aqua">#00FFFF</color>
+    <color name="lime">#00FF00</color>
+    <color name="teal">#008080</color>
+    <color name="green">#008000</color>
+    <color name="blue">#0000FF</color>
+    <color name="navy">#000080</color>
+    <color name="black">#000000</color>
+    <color name="azulinicio">#5bb6e3</color>
+    <color name="azulfin">#2d8bba</color>
+    <color name="verde_inst" >#96bf0d</color>
+    <color name="amarillo_inst" >#faed37</color>
+    <color name="gris_pie">#b3b3b3</color>
+    <color name="Gris_ini">#e0e0e0</color>
+    <color name="Gris_fin">#ebebeb</color>
+    <color name="Lila_oscuro">#704878</color>
+    <color name="lila_claro">#9c81a6</color>
+    <color name="lila_masclaro">#b7a3cf</color>
+    <color name="color_primary">#0081D7</color>
+    <color name="color_primary_dark">#0079CA</color>
+    <color name="color_accent">#0081D7</color>
+    <color name="fondo">#f5f5f5</color>
+    <color name="action1">#323942</color>
+    <color name="action1Dark">#212830</color>
+    <color name="color_azuico">#33d4c9</color>
+    <color name="border_edit">#b5b5b5</color>
+    <color name="item_lista">#b3f6ff</color>
+    <color name="action2Dark">#00ad06</color>
+    <color name="sleccion">#0055b0</color>
+    <color name="tab">#0099ff</color>
+    <color name="gris_g">#d9d9d9</color>
+    <color name="fondoBotones">#e0e0e0</color>
+</resources>
